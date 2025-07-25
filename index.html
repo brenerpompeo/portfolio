@@ -23,18 +23,6 @@
             --text-color: #E0E0E0;
             --primary-color: #00E5FF; /* Ciano Neon */
             --border-color: rgba(255, 255, 255, 0.1);
-            --card-bg: rgba(255, 255, 255, 0.02);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --header-bg: rgba(0, 0, 0, 0.3);
-        }
-        html.light {
-            --bg-color: #F5F5F5;
-            --text-color: #1A1A1A;
-            --primary-color: #007BFF; /* Azul Clássico */
-            --border-color: rgba(0, 0, 0, 0.1);
-            --card-bg: rgba(255, 255, 255, 0.5);
-            --card-border: rgba(0, 0, 0, 0.1);
-            --header-bg: rgba(255, 255, 255, 0.5);
         }
 
         html { scroll-behavior: smooth; }
@@ -68,26 +56,13 @@
         .text-glow {
             text-shadow: 0 0 8px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3);
         }
-        html.light .text-glow {
-            text-shadow: none;
-        }
-
-        html.light .skill-pill {
-            background-color: #e0e0e0;
-            color: #333;
-        }
-
-        html.light .filter-btn:not(.active) {
-            background-color: #e0e0e0;
-            color: #333;
-        }
 
         /* Estilo para cards com efeito "glassmorphism" */
         .glass-card {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
+            border: 1px solid var(--border-color);
             transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .glass-card:hover {
@@ -144,40 +119,28 @@
     <div class="custom-cursor"></div>
 
     <!-- Cabeçalho -->
-    <header id="main-header" class="bg-header-bg backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10">
+    <header class="bg-black/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#inicio" class="text-xl font-bold tracking-wider hover:text-[var(--primary-color)] transition-colors">Brenër Pompêo</a>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest items-center">
+            <a href="#inicio" class="text-xl font-bold tracking-wider hover:text-[var(--primary-color)] transition-colors">SEU NOME</a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest">
                 <a href="#sobre" class="nav-link">SOBRE</a>
                 <a href="#skills" class="nav-link">SKILLS</a>
                 <a href="#portfolio" class="nav-link">PROJETOS</a>
-                <a href="#blog" class="nav-link">BLOG</a>
                 <a href="#depoimentos" class="nav-link">DEPOIMENTOS</a>
                 <a href="#contato" class="nav-link">CONTATO</a>
-                <button id="theme-toggle" class="ml-4 text-gray-400 hover:text-white">
-                    <i data-lucide="sun" class="w-6 h-6 block dark-icon"></i>
-                    <i data-lucide="moon" class="w-6 h-6 hidden light-icon"></i>
-                </button>
             </nav>
-            <div class="md:hidden flex items-center">
-                <button id="theme-toggle-mobile" class="mr-4 text-gray-400 hover:text-white">
-                    <i data-lucide="sun" class="w-6 h-6 block dark-icon"></i>
-                    <i data-lucide="moon" class="w-6 h-6 hidden light-icon"></i>
-                </button>
-                <button id="menu-btn" class="z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
-            </div>
+            <button id="menu-btn" class="md:hidden z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/90 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
             <a href="#sobre" class="menu-link">SOBRE</a>
             <a href="#skills" class="menu-link">SKILLS</a>
             <a href="#portfolio" class="menu-link">PROJETOS</a>
-            <a href="#blog" class="menu-link">BLOG</a>
             <a href="#depoimentos" class="menu-link">DEPOIMENTOS</a>
             <a href="#contato" class="menu-link">CONTATO</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6">
+    <main class="container mx-auto px-12 md:px-24">
 
         <!-- Seção Início (Hero) -->
         <section id="inicio" class="min-h-screen flex items-center pt-20">
@@ -189,7 +152,7 @@
                     </span>
                 </h1>
                 <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 text-gray-400">
-                    Olá! Sou Brenër Pompêo, um Arquiteto de Impacto Estratégico que cria soluções digitais sofisticadas e de alta performance.
+                    Olá! Sou [Seu Nome], um [Sua Profissão] que cria soluções digitais sofisticadas e de alta performance.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
                     <a href="#portfolio" class="cta-button">Explorar Projetos</a>
@@ -198,7 +161,7 @@
         </section>
 
         <!-- Seção Sobre -->
-        <section id="sobre" class="py-24 md:py-40 reveal">
+        <section id="sobre" class="py-20 md:py-32 reveal">
             <div class="grid md:grid-cols-5 gap-12 items-center">
                 <div class="md:col-span-2">
                     <div class="p-1 border border-white/10 rounded-lg glass-card">
@@ -207,9 +170,7 @@
                 </div>
                 <div class="md:col-span-3">
                     <h2 class="section-title">Sobre Mim</h2>
-                    <p class="text-gray-400 mb-4 leading-relaxed">Como um Arquiteto de Impacto Estratégico, sou Brenër Pompêo, um comunicador movido por propósito, com raízes em Campinas, São Paulo – uma cidade cuja história, notavelmente como a última a abolir a escravidão no Brasil, moldou profundamente meu compromisso com a justiça social e a equidade. Sou fluente em português e estou ativamente expandindo minhas capacidades linguísticas em inglês e espanhol, buscando a fluidez necessária para a colaboração global.</p>
-                    <p class="text-gray-400 mb-4 leading-relaxed">Minha jornada profissional é construída sobre uma sólida fundação em Comunicação Social (Jornalismo pela PUC-Campinas), complementada por formações contínuas em Planejamento Estratégico, Gestão Ágil e Comunicação Sustentável. Atualmente, como Assistente de Marketing no Pacto Global da ONU – Rede Brasil, atuo na intersecção de políticas internacionais, setor privado e práticas de ESG. Meu próximo passo, um MBA em Gestão de Negócios e Inovação com foco em ESG, visa solidificar ainda mais minha expertise.</p>
-                    <p class="text-gray-400 mb-4 leading-relaxed">Minha aspiração é alcançar uma posição de alta liderança estratégica global, uma visão que se materializa no meu projeto "Brasil Sustenta". Este é o emprego dos meus sonhos, pois alinha-se intrinsecamente com meu desejo de servir à humanidade e ser um agente de transformação.</p>
+                    <p class="text-gray-400 mb-4 leading-relaxed">Com mais de [X] anos de experiência, meu foco é criar soluções que não apenas pareçam boas, mas que também funcionem de forma intuitiva e alcancem os objetivos propostos. Minha jornada no mundo do design começou com [conte uma breve história ou motivação].</p>
                     <div class="flex space-x-4 mt-8">
                         <a href="#" class="social-link"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
                         <a href="#" class="social-link"><i data-lucide="github" class="w-6 h-6"></i></a>
@@ -220,129 +181,54 @@
         </section>
 
         <!-- Seção Skills -->
-        <section id="skills" class="py-24 md:py-40 reveal">
+        <section id="skills" class="py-20 md:py-32 reveal">
             <div class="text-center mb-12">
-                <h2 class="section-title">Habilidades Chave</h2>
-                <p class="section-subtitle">Minhas competências para gerar impacto positivo.</p>
+                <h2 class="section-title">Habilidades</h2>
+                <p class="section-subtitle">Tecnologias e ferramentas que utilizo no meu dia a dia.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="glass-card p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-4 text-[var(--primary-color)]">Estratégia e Liderança de Impacto</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill">Liderança Estratégica e Visionária</span>
-                        <span class="skill-pill">Design e Gestão de Ecossistemas de Impacto</span>
-                        <span class="skill-pill">Alinhamento ESG e ODS</span>
-                        <span class="skill-pill">Análise e Formulação de Políticas</span>
-                        <span class="skill-pill">Liderança Transformacional e Intercultural</span>
-                    </div>
-                </div>
-                <div class="glass-card p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-4 text-[var(--primary-color)]">Comunicação Estratégica e Storytelling</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill">Comunicação de Alto Impacto</span>
-                        <span class="skill-pill">Copywriting e Redação Estratégica</span>
-                        <span class="skill-pill">Gestão de Conteúdo e Campanhas Integradas</span>
-                        <span class="skill-pill">Relações Institucionais e Stakeholder Engagement</span>
-                        <span class="skill-pill">Edição de Vídeo e Produção Audiovisual</span>
-                        <span class="skill-pill">Design de Apresentações</span>
-                    </div>
-                </div>
-                <div class="glass-card p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-4 text-[var(--primary-color)]">Gestão de Projetos e Operações</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill">Metodologias Ágeis (Scrum, Kanban, OKR)</span>
-                        <span class="skill-pill">Gestão de Fornecedores e Orçamento</span>
-                        <span class="skill-pill">Otimização de Processos</span>
-                        <span class="skill-pill">Coordenação Operacional</span>
-                    </div>
-                </div>
-                <div class="glass-card p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-4 text-[var(--primary-color)]">Pesquisa, Análise e Desenvolvimento Pessoal</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill">Pesquisa Estratégica e Análise de Tendências</span>
-                        <span class="skill-pill">Autoconhecimento e Desenvolvimento Holístico</span>
-                        <span class="skill-pill">Mestria Emocional e Resiliência</span>
-                        <span class="skill-pill">Pensamento Crítico e Resolução de Problemas</span>
-                        <span class="skill-pill">Adaptação e Aprendizado Contínuo</span>
-                    </div>
-                </div>
+            <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-3 md:gap-4">
+                <span class="skill-pill">UI/UX Design</span><span class="skill-pill">Branding</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Figma</span><span class="skill-pill">Adobe XD</span><span class="skill-pill">Webflow</span><span class="skill-pill">HTML5</span><span class="skill-pill">CSS3 & Tailwind</span><span class="skill-pill">JavaScript</span><span class="skill-pill">React</span>
             </div>
         </section>
 
         <!-- Seção Portfólio / Projetos -->
-        <section id="portfolio" class="py-24 md:py-40 reveal">
+        <section id="portfolio" class="py-20 md:py-32 reveal">
             <div class="text-center mb-12">
-                <h2 class="section-title">Projetos de Impacto</h2>
-                <p class="section-subtitle">Casos onde apliquei minhas habilidades para gerar transformação.</p>
+                <h2 class="section-title">Projetos Recentes</h2>
+                <p class="section-subtitle">Uma seleção dos meus trabalhos favoritos.</p>
             </div>
-            <div class="flex justify-center flex-wrap gap-2 mb-10">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="esg">ESG e ODS</button>
-                <button class="filter-btn" data-filter="comunicacao">Comunicação Estratégica</button>
-                <button class="filter-btn" data-filter="ecossistema">Ecossistemas de Impacto</button>
-            </div>
-            <div id="project-grid" class="grid md:grid-cols-2 gap-8">
-                <div class="project-card" data-project="1" data-tags="esg comunicacao">
-                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Campanha+ONU" alt="Campanha ONU" class="project-image">
-                    <div class="p-6"><h3 class="text-xl font-bold">Campanhas no Pacto Global da ONU</h3><p class="text-gray-400 text-sm">ESG / Comunicação Estratégica</p></div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="project-card" data-project="1">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+1" alt="Descrição do Projeto 1" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 1</h3><p class="text-gray-400 text-sm">Branding / UI/UX</p></div>
                 </div>
-                <div class="project-card" data-project="2" data-tags="ecossistema esg">
-                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Brasil+Sustenta" alt="Brasil Sustenta" class="project-image">
-                    <div class="p-6"><h3 class="text-xl font-bold">Brasil Sustenta</h3><p class="text-gray-400 text-sm">Ecossistemas de Impacto / ESG</p></div>
+                <div class="project-card" data-project="2">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+2" alt="Descrição do Projeto 2" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 2</h3><p class="text-gray-400 text-sm">Web Design / Desenvolvimento</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção Blog -->
-        <section id="blog" class="py-24 md:py-40 reveal">
+        <!-- Seção Depoimentos -->
+        <section id="depoimentos" class="py-20 md:py-32 reveal">
             <div class="text-center mb-12">
-                <h2 class="section-title">Blog</h2>
-                <p class="section-subtitle">Artigos e insights sobre tecnologia, design e carreira.</p>
+                <h2 class="section-title">O que dizem sobre mim</h2>
+                <p class="section-subtitle">Feedback de clientes e colaboradores.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Post 1 -->
-                <div class="blog-post-card">
-                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Post+1" alt="Imagem do Post 1" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-2">15 de Julho, 2024</p>
-                        <h3 class="text-xl font-bold mb-2">Como o Design Thinking pode impulsionar sua carreira</h3>
-                        <a href="#" class="text-[var(--primary-color)] font-semibold hover:underline">Leia mais &rarr;</a>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-card p-8 rounded-lg">
+                    <p class="text-gray-300 italic">"[Seu Nome] tem uma capacidade incrível de traduzir ideias complexas em designs elegantes e funcionais. O processo foi transparente e o resultado superou todas as expectativas."</p>
+                    <div class="mt-4 text-right"><p class="font-bold">Nome do Cliente</p><p class="text-sm text-gray-500">CEO, Empresa Exemplo</p></div>
                 </div>
-                <!-- Post 2 -->
-                <div class="blog-post-card">
-                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Post+2" alt="Imagem do Post 2" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-2">02 de Julho, 2024</p>
-                        <h3 class="text-xl font-bold mb-2">5 tendências de UI/UX para ficar de olho em 2025</h3>
-                        <a href="#" class="text-[var(--primary-color)] font-semibold hover:underline">Leia mais &rarr;</a>
-                    </div>
+                <div class="glass-card p-8 rounded-lg">
+                    <p class="text-gray-300 italic">"Trabalhar com [Seu Nome] foi um divisor de águas para o nosso produto. A atenção aos detalhes de UX fez nossa taxa de conversão aumentar significativamente."</p>
+                    <div class="mt-4 text-right"><p class="font-bold">Outro Cliente</p><p class="text-sm text-gray-500">Diretor de Produto, Startup Tech</p></div>
                 </div>
-                <!-- Post 3 -->
-                <div class="blog-post-card">
-                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Post+3" alt="Imagem do Post 3" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-2">20 de Junho, 2024</p>
-                        <h3 class="text-xl font-bold mb-2">A importância de um portfólio para desenvolvedores</h3>
-                        <a href="#" class="text-[var(--primary-color)] font-semibold hover:underline">Leia mais &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Duplo Diamante -->
-        <section id="duplo-diamante" class="py-24 md:py-40 reveal">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Meu Processo Criativo</h2>
-                <p class="section-subtitle">Utilizando o Duplo Diamante para otimizar e inovar.</p>
-            </div>
-            <div class="max-w-4xl mx-auto">
-                <img src="https://placehold.co/1200x600/0D0D0D/FFFFFF?text=Gráfico+Duplo+Diamante" alt="Gráfico do Processo Duplo Diamante" class="rounded-lg">
             </div>
         </section>
 
         <!-- Seção Contato -->
-        <section id="contato" class="py-24 md:py-40 reveal">
+        <section id="contato" class="py-20 md:py-32 reveal">
             <div class="text-center mb-12">
                 <h2 class="section-title">Vamos Criar Algo Incrível?</h2>
                 <p class="section-subtitle">Estou disponível para novos projetos e colaborações.</p>
@@ -361,7 +247,7 @@
 
     <!-- Rodapé -->
     <footer class="border-t border-white/10 mt-20">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-600 text-sm"><p>&copy; <span id="current-year"></span> Brenër Pompêo. Todos os direitos reservados.</p></div>
+        <div class="container mx-auto px-6 py-6 text-center text-gray-600 text-sm"><p>&copy; <span id="current-year"></span> [Seu Nome]. Todos os direitos reservados.</p></div>
     </footer>
 
     <!-- Modal para Estudos de Caso -->
@@ -371,7 +257,143 @@
         </div>
     </div>
 
-    <script src="scripts/main.js"></script>
-    <script src="scripts/modal.js"></script>
+    <script>
+        // --- CONFIGURAÇÃO E ESTILOS DINÂMICOS ---
+        tailwind.config = {
+            theme: { extend: { colors: { primary: 'var(--primary-color)' } } }
+        }
+
+        // Aplica estilos base reutilizáveis com JavaScript para manter o HTML limpo
+        const applyBaseStyles = () => {
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.add('hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.menu-link').forEach(el => el.classList.add('text-2xl', 'font-bold', 'tracking-widest', 'hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.cta-button').forEach(el => el.classList.add('bg-[var(--primary-color)]', 'text-black', 'font-bold', 'py-3', 'px-8', 'rounded-lg', 'transition-all', 'transform', 'hover:scale-105', 'hover:shadow-[0_0_20px_var(--primary-color)]'));
+            document.querySelectorAll('.section-title').forEach(el => el.classList.add('text-3xl', 'md:text-4xl', 'font-bold', 'tracking-tighter'));
+            document.querySelectorAll('.section-subtitle').forEach(el => el.classList.add('text-lg', 'text-gray-500', 'mt-2'));
+            document.querySelectorAll('.social-link').forEach(el => el.classList.add('text-gray-400', 'hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.skill-pill').forEach(el => el.classList.add('bg-white/5', 'text-cyan-300', 'text-sm', 'font-medium', 'py-1.5', 'px-4', 'rounded-full', 'border', 'border-white/10', 'hover:bg-white/10', 'transition-colors'));
+            document.querySelectorAll('.project-card').forEach(el => el.classList.add('group', 'block', 'rounded-lg', 'glass-card', 'overflow-hidden', 'cursor-pointer'));
+            document.querySelectorAll('.project-image').forEach(el => el.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-500', 'group-hover:scale-105'));
+            document.querySelectorAll('.form-input').forEach(el => el.classList.add('w-full', 'p-3', 'bg-white/5', 'border', 'border-white/10', 'rounded-lg', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[var(--primary-color)]', 'transition-all'));
+        };
+
+        // --- CURSOR PERSONALIZADO ---
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.setAttribute('style', `top: ${e.pageY}px; left: ${e.pageX}px;`);
+        });
+        document.querySelectorAll('a, button, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // --- MENU MOBILE ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleMenu = () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = isHidden ? '' : 'hidden';
+            menuBtn.querySelector('i').setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+            lucide.createIcons();
+        };
+        menuBtn.addEventListener('click', toggleMenu);
+        document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => !mobileMenu.classList.contains('hidden') && toggleMenu()));
+
+        // --- ANIMAÇÃO DE SCROLL (REVEAL) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- LÓGICA DO MODAL DE PROJETOS ---
+        const projectModal = document.getElementById('project-modal');
+        const modalContentContainer = document.getElementById('modal-content-container');
+
+        // Dados dos projetos (simulando um banco de dados)
+        const projectData = {
+            '1': {
+                title: 'Nome do Projeto 1',
+                category: 'Branding / UI/UX',
+                image: 'https://placehold.co/800x450/0D0D0D/FFFFFF?text=Solu%C3%A7%C3%A3o+Final',
+                challenge: 'O cliente precisava de um rebranding completo para se conectar com um público mais jovem e tecnológico, sem perder a essência da marca.',
+                role: 'Fui responsável por toda a estratégia de branding, design de identidade visual e o desenvolvimento do UI/UX para o novo website.',
+                process: 'Iniciamos com workshops de imersão, definimos os arquétipos da marca e desenvolvemos um design system robusto. O processo incluiu wireframes, protótipos interativos e testes de usabilidade.',
+                solution: 'Criamos uma identidade visual vibrante e um site com navegação intuitiva, focado na experiência mobile e com microinterações que encantam o usuário.',
+                impact: 'Aumento de 40% no engajamento de usuários e 15% na taxa de conversão nos primeiros 3 meses após o lançamento.'
+            },
+            '2': {
+                title: 'Nome do Projeto 2',
+                category: 'Web Design / Desenvolvimento',
+                image: 'https://placehold.co/800x450/0D0D0D/FFFFFF?text=Solu%C3%A7%C3%A3o+Final',
+                challenge: 'Desenvolver uma plataforma de e-commerce de alta performance, capaz de suportar um grande volume de acessos e com uma experiência de compra fluida.',
+                role: 'Atuei como designer e desenvolvedor front-end, criando a interface do zero e implementando-a com React e Next.js.',
+                process: 'A arquitetura foi pensada para ser escalável e rápida. Utilizamos a metodologia Jamstack para garantir a melhor performance e segurança.',
+                solution: 'Uma loja virtual ultrarrápida, com design limpo e um checkout otimizado, resultando em uma experiência de compra sem atritos.',
+                impact: 'Redução de 50% no tempo de carregamento da página e um aumento de 25% nas vendas.'
+            }
+        };
+
+        const createModalContent = (data) => {
+            return `
+                <i data-lucide="x" class="close-modal w-8 h-8 text-gray-500 hover:text-white transition-colors"></i>
+                <h2 class="text-3xl font-bold mb-2">${data.title}</h2>
+                <p class="text-sm text-gray-400 mb-6">${data.category}</p>
+                <img src="${data.image}" alt="${data.title}" class="w-full rounded-lg mb-8">
+                <div class="space-y-6 text-gray-300">
+                    <div><h3 class="font-bold text-lg text-white mb-1">O Desafio</h3><p>${data.challenge}</p></div>
+                    <div><h3 class="font-bold text-lg text-white mb-1">Meu Papel</h3><p>${data.role}</p></div>
+                    <div><h3 class="font-bold text-lg text-white mb-1">O Processo</h3><p>${data.process}</p></div>
+                    <div><h3 class="font-bold text-lg text-white mb-1">A Solução e o Impacto</h3><p class="text-[var(--primary-color)] font-medium">${data.impact}</p></div>
+                </div>
+            `;
+        };
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.project;
+                const data = projectData[projectId];
+                modalContentContainer.innerHTML = createModalContent(data);
+                projectModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                lucide.createIcons(); // Recria o ícone 'x'
+                projectModal.querySelector('.close-modal').addEventListener('click', () => {
+                    projectModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                });
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == projectModal) {
+                projectModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // --- FORMULÁRIO DE CONTATO ---
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formStatus.textContent = 'Enviando...';
+            formStatus.style.color = 'var(--text-color)';
+
+            // Simulação de envio de formulário
+            setTimeout(() => {
+                formStatus.textContent = 'Mensagem enviada com sucesso!';
+                formStatus.style.color = 'var(--primary-color)';
+                form.reset();
+            }, 1500);
+        });
+
+        // --- INICIALIZAÇÃO ---
+        document.addEventListener('DOMContentLoaded', () => {
+            applyBaseStyles();
+            lucide.createIcons();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>
