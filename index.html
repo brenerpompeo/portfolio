@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class=""> <!-- A classe 'light-mode' será adicionada aqui -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Nome | Portfólio Criativo</title>
+    <title>Brenër Pompêo | Arquiteto de Impacto Estratégico</title>
+    
+    <!-- SEO e Metadados Otimizados -->
+    <meta name="description" content="Consultoria estratégica para líderes e organizações que buscam desenhar futuros desejáveis. Transforme complexidade em clareza com Brenër Pompêo.">
+    <meta name="keywords" content="Brenër Pompêo, Consultoria Estratégica, Liderança, Inovação, Design Thinking, Gestão Ágil, ESG, Futuro dos Negócios">
+    <meta property="og:title" content="Brenër Pompêo | O futuro não é um destino. É um design.">
+    <meta property="og:description" content="Consultoria estratégica para líderes e organizações que buscam desenhar futuros desejáveis.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0A0A0A/FFFFFF?text=BREN%C3%8BR+POMP%C3%8APEO">
+    <meta property="og:url" content="URL_DO_SEU_SITE_AQUI">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,18 +19,32 @@
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* Estilo base e variáveis de cor para um tema futurista */
+        /* --- Tema Escuro (Padrão) --- */
         :root {
-            --bg-color: #0D0D0D;
-            --text-color: #E0E0E0;
-            --primary-color: #00E5FF; /* Ciano Neon */
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg-color: #0A0A0A;
+            --text-color: #EAEAEA;
+            --subtle-text-color: #A1A1AA;
+            --primary-color: #FFFFFF;
+            --accent-color: #3B82F6;
+            --border-color: #27272A;
+            --card-bg-color: transparent;
+        }
+
+        /* --- Tema Claro --- */
+        .light-mode {
+            --bg-color: #FFFFFF;
+            --text-color: #0A0A0A;
+            --subtle-text-color: #6B7280;
+            --primary-color: #0A0A0A;
+            --accent-color: #3B82F6;
+            --border-color: #E5E7EB;
+            --card-bg-color: #FFFFFF;
         }
 
         html { scroll-behavior: smooth; }
@@ -30,47 +52,29 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 2rem 2rem;
-        }
-
-        /* Cursor Personalizado */
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-            z-index: 9999;
-        }
-        .custom-cursor.hovered {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(0, 229, 255, 0.2);
-        }
-
-        /* Efeito de brilho para o gradiente de texto */
-        .text-glow {
-            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3);
-        }
-
-        /* Estilo para cards com efeito "glassmorphism" */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        /* Animação de fade-in ao rolar a página */
+        h1, h2, h3, h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .clean-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .clean-card:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -80,213 +84,284 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Estilos para o Modal de Projeto */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
+        
+        /* --- Animação do Carrossel de Logos --- */
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
         }
-        .modal-content {
+        .logos {
+            overflow: hidden;
+            padding: 40px 0;
+            white-space: nowrap;
             position: relative;
-            margin: 5% auto;
-            padding: 2rem;
-            width: 90%;
-            max-width: 900px;
-            animation: slide-in 0.5s ease-out;
         }
-        @keyframes slide-in {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .close-modal {
+        .logos:before,
+        .logos:after {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            cursor: pointer;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            content: "";
+            z-index: 2;
+        }
+        .logos:before {
+            left: 0;
+            background: linear-gradient(to left, rgba(10, 10, 10, 0), var(--bg-color));
+        }
+        .logos:after {
+            right: 0;
+            background: linear-gradient(to right, rgba(10, 10, 10, 0), var(--bg-color));
+        }
+        .light-mode .logos:before {
+             background: linear-gradient(to left, rgba(255, 255, 255, 0), var(--bg-color));
+        }
+        .light-mode .logos:after {
+             background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--bg-color));
+        }
+        .logos-slide {
+            display: inline-block;
+            animation: 35s slide infinite linear;
+        }
+        .logos-slide img {
+            height: 48px;
+            margin: 0 40px;
+        }
+
+        /* Spinner for loading state */
+        .loader {
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="custom-cursor"></div>
-
     <!-- Cabeçalho -->
-    <header class="bg-black/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10">
+    <header class="bg-black/50 light:bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-color)]">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#inicio" class="text-xl font-bold tracking-wider hover:text-[var(--primary-color)] transition-colors">SEU NOME</a>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest">
-                <a href="#sobre" class="nav-link">SOBRE</a>
-                <a href="#skills" class="nav-link">SKILLS</a>
-                <a href="#portfolio" class="nav-link">PROJETOS</a>
-                <a href="#depoimentos" class="nav-link">DEPOIMENTOS</a>
+            <a href="#inicio" class="text-xl font-bold tracking-tight text-white light:text-black">BRENËR POMPÊO</a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wider">
+                <a href="#filosofia" class="nav-link">FILOSOFIA</a>
+                <a href="#consultoria" class="nav-link">CONSULTORIA</a>
+                <a href="#ia-lab" class="nav-link">LABORATÓRIO IA</a>
+                <a href="#prova-social" class="nav-link">CLIENTES</a>
                 <a href="#contato" class="nav-link">CONTATO</a>
+                <button id="theme-toggle" class="ml-4 text-[var(--subtle-text-color)] hover:text-[var(--accent-color)]">
+                    <i id="theme-toggle-dark-icon" data-lucide="moon" class="w-5 h-5"></i>
+                    <i id="theme-toggle-light-icon" data-lucide="sun" class="w-5 h-5 hidden"></i>
+                </button>
             </nav>
-            <button id="menu-btn" class="md:hidden z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
+            <div class="flex md:hidden items-center gap-4">
+                <button id="theme-toggle-mobile" class="text-[var(--subtle-text-color)] hover:text-[var(--accent-color)]">
+                    <i id="theme-toggle-dark-icon-mobile" data-lucide="moon" class="w-6 h-6"></i>
+                    <i id="theme-toggle-light-icon-mobile" data-lucide="sun" class="w-6 h-6 hidden"></i>
+                </button>
+                <button id="menu-btn" class="z-50 text-white light:text-black"><i data-lucide="menu" class="w-7 h-7"></i></button>
+            </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/90 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
-            <a href="#sobre" class="menu-link">SOBRE</a>
-            <a href="#skills" class="menu-link">SKILLS</a>
-            <a href="#portfolio" class="menu-link">PROJETOS</a>
-            <a href="#depoimentos" class="menu-link">DEPOIMENTOS</a>
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/95 light:bg-white/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
+            <a href="#filosofia" class="menu-link">FILOSOFIA</a>
+            <a href="#consultoria" class="menu-link">CONSULTORIA</a>
+            <a href="#ia-lab" class="menu-link">LABORATÓRIO IA</a>
+            <a href="#prova-social" class="menu-link">CLIENTES</a>
             <a href="#contato" class="menu-link">CONTATO</a>
         </div>
     </header>
 
     <main class="container mx-auto px-6">
 
-        <!-- Seção Início (Hero) -->
+        <!-- Seção Hero -->
         <section id="inicio" class="min-h-screen flex items-center pt-20">
-            <div class="w-full text-center md:text-left reveal">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none">
-                    Design que Inspira
-                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary-color)] to-purple-500 text-glow">
-                        o Futuro.
-                    </span>
+            <div class="w-full max-w-4xl mx-auto text-center reveal">
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-black leading-tight">
+                    O futuro não é um destino. É um design.
                 </h1>
-                <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 text-gray-400">
-                    Olá! Sou [Seu Nome], um [Sua Profissão] que cria soluções digitais sofisticadas e de alta performance.
+                <p class="mt-6 text-xl max-w-2xl mx-auto text-[var(--subtle-text-color)]">
+                    Em um mundo de complexidade crescente, a clareza é o maior ativo estratégico. Eu ajudo líderes e organizações a desenhar futuros desejáveis para seus negócios e carreiras.
                 </p>
-                <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                    <a href="#portfolio" class="cta-button">Explorar Projetos</a>
+                <div class="mt-10">
+                    <a href="#contato" class="cta-button">Agendar uma Conversa Estratégica</a>
                 </div>
             </div>
         </section>
 
-        <!-- Seção Sobre -->
-        <section id="sobre" class="py-20 md:py-32 reveal">
-            <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-2">
-                    <div class="p-1 border border-white/10 rounded-lg glass-card">
-                        <img src="https://placehold.co/600x600/0D0D0D/00E5FF?text=Sua+Foto" alt="Retrato de [Seu Nome]" class="rounded-md w-full">
+        <!-- Seção Filosofia -->
+        <section id="filosofia" class="py-20 md:py-32 reveal">
+             <h2 class="section-title mb-12 text-center">Minha Filosofia</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="p-2 border border-[var(--border-color)] rounded-lg">
+                    <img src="https://placehold.co/800x1000/0A0A0A/FFFFFF?text=B.P." alt="Retrato de Brenër Pompêo" class="rounded-md w-full">
+                </div>
+                <div class="text-[var(--subtle-text-color)] space-y-4 text-lg leading-relaxed">
+                    <p class="text-2xl font-bold text-[var(--text-color)]">O problema não é a falta de informação, é a falta de um framework.</p>
+                    <p>Vivemos na era da sobrecarga de dados, metodologias e tendências. A verdadeira dificuldade não é encontrar respostas, mas fazer as perguntas certas. Profissionais estagnam e projetos falham não por falta de esforço, mas por falta de um sistema claro para navegar a incerteza.</p>
+                    <p>Minha abordagem é atuar como um <strong class="text-[var(--text-color)]">Arquiteto Estratégico</strong>. Eu não trago soluções prontas. Eu forneço o blueprint e as ferramentas para que você e sua equipe construam as próprias soluções — de forma mais rápida, inteligente e alinhada com seus objetivos mais profundos.</p>
+                    <p>Integrando <strong class="text-[var(--text-color)]">Design Thinking, Gestão Ágil e uma compreensão de tecnologias emergentes como a IA</strong>, transformamos a complexidade em um roteiro de ação claro e executável.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção Consultoria -->
+        <section id="consultoria" class="py-20 md:py-32 reveal">
+            <h2 class="section-title mb-12 text-center">Frentes de Consultoria</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="clean-card p-6 h-full flex flex-col"><i data-lucide="move-right" class="w-10 h-10 text-[var(--accent-color)] mb-4"></i><h3 class="text-xl font-bold mb-2">Transição e Desenvolvimento de Carreira</h3><p class="text-sm text-[var(--subtle-text-color)]">Um programa estruturado para mapear seu potencial, definir seu próximo passo e construir o plano de ação para chegar lá.</p></div>
+                <div class="clean-card p-6 h-full flex flex-col"><i data-lucide="brain-circuit" class="w-10 h-10 text-[var(--accent-color)] mb-4"></i><h3 class="text-xl font-bold mb-2">Design Thinking para Inovação</h3><p class="text-sm text-[var(--subtle-text-color)]">Workshops e consultoria para destravar a criatividade da sua equipe e resolver desafios de negócio de forma centrada no ser humano.</p></div>
+                <div class="clean-card p-6 h-full flex flex-col"><i data-lucide="fast-forward" class="w-10 h-10 text-[var(--accent-color)] mb-4"></i><h3 class="text-xl font-bold mb-2">Gestão Ágil de Projetos</h3><p class="text-sm text-[var(--subtle-text-color)]">Implementação de frameworks ágeis para acelerar a entrega, melhorar a colaboração e garantir que seus projetos gerem valor real.</p></div>
+                <div class="clean-card p-6 h-full flex flex-col"><i data-lucide="sparkles" class="w-10 h-10 text-[var(--accent-color)] mb-4"></i><h3 class="text-xl font-bold mb-2">IA e Novos Negócios</h3><p class="text-sm text-[var(--subtle-text-color)]">Consultoria estratégica para ajudar sua organização a entender, adaptar-se e capitalizar as oportunidades da revolução da IA.</p></div>
+            </div>
+        </section>
+
+        <!-- Seção Laboratório IA -->
+        <section id="ia-lab" class="py-20 md:py-32 reveal">
+            <h2 class="section-title mb-12 text-center">Laboratório de Estratégia com IA</h2>
+            
+            <!-- Ferramenta 1: Diagnóstico de Carreira -->
+            <div class="max-w-3xl mx-auto clean-card p-8 mb-16">
+                <h3 class="text-2xl font-bold mb-2 text-center">Diagnóstico de Carreira</h3>
+                <p class="text-center text-[var(--subtle-text-color)] mb-6">Receba um plano de ação personalizado para sua próxima movimentação de carreira.</p>
+                <div class="space-y-4">
+                    <input id="current-role" type="text" placeholder="Seu cargo atual" class="form-input">
+                    <input id="desired-role" type="text" placeholder="Cargo ou área desejada" class="form-input">
+                    <textarea id="skills-input" rows="3" placeholder="Suas principais habilidades (separadas por vírgula)" class="form-input"></textarea>
+                    <button id="career-analyze-btn" class="cta-button w-full flex items-center justify-center gap-2">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                        ✨ Analisar Carreira com IA
+                    </button>
+                </div>
+            </div>
+            <div id="career-results-container" class="max-w-3xl mx-auto hidden">
+                <div id="career-loader" class="flex justify-center items-center p-8"><div class="loader"></div></div>
+                <div id="career-analysis-results" class="hidden"></div>
+            </div>
+
+            <!-- Ferramenta 2: Gerador de Pitch Estratégico (NOVA) -->
+            <div class="max-w-3xl mx-auto clean-card p-8 mt-16">
+                <h3 class="text-2xl font-bold mb-2 text-center">Gerador de Pitch Estratégico</h3>
+                <p class="text-center text-[var(--subtle-text-color)] mb-6">Transforme sua ideia ou objetivo em uma narrativa poderosa e convincente.</p>
+                <div class="space-y-4">
+                    <textarea id="pitch-idea-input" rows="4" placeholder="Descreva seu projeto, objetivo de carreira ou ideia..." class="form-input"></textarea>
+                    <input id="pitch-audience-input" type="text" placeholder="Para quem é o pitch? (Ex: Investidores, Liderança)" class="form-input">
+                    <button id="pitch-analyze-btn" class="cta-button w-full flex items-center justify-center gap-2">
+                        <i data-lucide="presentation" class="w-5 h-5"></i>
+                        ✨ Construir Pitch com IA
+                    </button>
+                </div>
+            </div>
+            <div id="pitch-results-container" class="max-w-3xl mx-auto mt-8 hidden">
+                <div id="pitch-loader" class="flex justify-center items-center p-8"><div class="loader"></div></div>
+                <div id="pitch-analysis-results" class="hidden"></div>
+            </div>
+        </section>
+        
+        <!-- Seção Prova Social -->
+        <section id="prova-social" class="py-20 md:py-32 reveal">
+            <h2 class="section-title mb-12 text-center">Construindo o Futuro com Líderes e Organizações de Ponta</h2>
+             <div class="max-w-5xl mx-auto">
+                <div class="logos">
+                    <div class="logos-slide">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=PACTO+GLOBAL+ONU" alt="Logo Pacto Global da ONU" class="h-10 md:h-12" title="Pacto Global da ONU">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=INOVA+UNICAMP" alt="Logo Inova Unicamp" class="h-10 md:h-12" title="Inova Unicamp">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=PUC-CAMPINAS" alt="Logo PUC-Campinas" class="h-10 md:h-12" title="PUC-Campinas">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=CLIENTE+B" alt="Logo Cliente B" class="h-10 md:h-12" title="Cliente B">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=CLIENTE+C" alt="Logo Cliente C" class="h-10 md:h-12" title="Cliente C">
+                        <!-- Duplicado para efeito contínuo -->
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=PACTO+GLOBAL+ONU" alt="Logo Pacto Global da ONU" class="h-10 md:h-12" title="Pacto Global da ONU">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=INOVA+UNICAMP" alt="Logo Inova Unicamp" class="h-10 md:h-12" title="Inova Unicamp">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=PUC-CAMPINAS" alt="Logo PUC-Campinas" class="h-10 md:h-12" title="PUC-Campinas">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=CLIENTE+B" alt="Logo Cliente B" class="h-10 md:h-12" title="Cliente B">
+                        <img src="https://placehold.co/200x100/0A0A0A/EAEAEA?text=CLIENTE+C" alt="Logo Cliente C" class="h-10 md:h-12" title="Cliente C">
                     </div>
                 </div>
-                <div class="md:col-span-3">
-                    <h2 class="section-title">Sobre Mim</h2>
-                    <p class="text-gray-400 mb-4 leading-relaxed">Com mais de [X] anos de experiência, meu foco é criar soluções que não apenas pareçam boas, mas que também funcionem de forma intuitiva e alcancem os objetivos propostos. Minha jornada no mundo do design começou com [conte uma breve história ou motivação].</p>
-                    <div class="flex space-x-4 mt-8">
-                        <a href="#" class="social-link"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
-                        <a href="#" class="social-link"><i data-lucide="github" class="w-6 h-6"></i></a>
-                        <a href="#" class="social-link"><i data-lucide="behance" class="w-6 h-6"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Skills -->
-        <section id="skills" class="py-20 md:py-32 reveal">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Habilidades</h2>
-                <p class="section-subtitle">Tecnologias e ferramentas que utilizo no meu dia a dia.</p>
-            </div>
-            <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-3 md:gap-4">
-                <span class="skill-pill">UI/UX Design</span><span class="skill-pill">Branding</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Figma</span><span class="skill-pill">Adobe XD</span><span class="skill-pill">Webflow</span><span class="skill-pill">HTML5</span><span class="skill-pill">CSS3 & Tailwind</span><span class="skill-pill">JavaScript</span><span class="skill-pill">React</span>
-            </div>
-        </section>
-
-        <!-- Seção Portfólio / Projetos -->
-        <section id="portfolio" class="py-20 md:py-32 reveal">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Projetos Recentes</h2>
-                <p class="section-subtitle">Uma seleção dos meus trabalhos favoritos.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="project-card" data-project="1">
-                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+1" alt="Descrição do Projeto 1" class="project-image">
-                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 1</h3><p class="text-gray-400 text-sm">Branding / UI/UX</p></div>
-                </div>
-                <div class="project-card" data-project="2">
-                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+2" alt="Descrição do Projeto 2" class="project-image">
-                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 2</h3><p class="text-gray-400 text-sm">Web Design / Desenvolvimento</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Depoimentos -->
-        <section id="depoimentos" class="py-20 md:py-32 reveal">
-            <div class="text-center mb-12">
-                <h2 class="section-title">O que dizem sobre mim</h2>
-                <p class="section-subtitle">Feedback de clientes e colaboradores.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="glass-card p-8 rounded-lg">
-                    <p class="text-gray-300 italic">"[Seu Nome] tem uma capacidade incrível de traduzir ideias complexas em designs elegantes e funcionais. O processo foi transparente e o resultado superou todas as expectativas."</p>
-                    <div class="mt-4 text-right"><p class="font-bold">Nome do Cliente</p><p class="text-sm text-gray-500">CEO, Empresa Exemplo</p></div>
-                </div>
-                <div class="glass-card p-8 rounded-lg">
-                    <p class="text-gray-300 italic">"Trabalhar com [Seu Nome] foi um divisor de águas para o nosso produto. A atenção aos detalhes de UX fez nossa taxa de conversão aumentar significativamente."</p>
-                    <div class="mt-4 text-right"><p class="font-bold">Outro Cliente</p><p class="text-sm text-gray-500">Diretor de Produto, Startup Tech</p></div>
+                <div class="mt-16 clean-card p-8 text-center">
+                     <i data-lucide="quote" class="w-10 h-10 text-[var(--accent-color)] mb-4 mx-auto"></i>
+                    <p class="text-xl italic text-[var(--text-color)]">"Brenër possui uma rara combinação de visão estratégica e capacidade de execução. Ele não apenas entende o 'porquê', mas também domina o 'como', transformando ideias complexas em ações concretas e de alto impacto."</p>
+                    <p class="mt-4 font-bold text-[var(--text-color)]">- [Nome do Cliente/Gestor], [Cargo]</p>
                 </div>
             </div>
         </section>
 
         <!-- Seção Contato -->
         <section id="contato" class="py-20 md:py-32 reveal">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Vamos Criar Algo Incrível?</h2>
-                <p class="section-subtitle">Estou disponível para novos projetos e colaborações.</p>
-            </div>
-            <div class="max-w-xl mx-auto glass-card p-8 rounded-lg">
-                <form id="contact-form">
-                    <div class="mb-4"><label for="name" class="sr-only">Nome</label><input type="text" id="name" name="name" placeholder="Seu Nome" class="form-input" required></div>
-                    <div class="mb-4"><label for="email" class="sr-only">Email</label><input type="email" id="email" name="email" placeholder="Seu Email" class="form-input" required></div>
-                    <div class="mb-4"><label for="message" class="sr-only">Mensagem</label><textarea id="message" name="message" rows="4" placeholder="Sua Mensagem" class="form-input" required></textarea></div>
-                    <button type="submit" class="cta-button w-full">Enviar Mensagem</button>
-                </form>
-                <p id="form-status" class="mt-4 text-center"></p>
+            <div class="text-center max-w-xl mx-auto">
+                <h2 class="section-title mb-4">Vamos desenhar seu próximo passo?</h2>
+                <p class="text-[var(--subtle-text-color)] mb-8">Se você está pronto para transformar desafios em oportunidades e construir um futuro com mais clareza e intenção, estou aqui para ajudar. Vamos começar com uma conversa.</p>
+                <a href="mailto:b.pompeo.rodrigues@gmail.com?subject=Pedido de Agendamento - Consultoria Estratégica" class="cta-button">Agende uma Sessão Estratégica</a>
             </div>
         </section>
     </main>
 
     <!-- Rodapé -->
-    <footer class="border-t border-white/10 mt-20">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-600 text-sm"><p>&copy; <span id="current-year"></span> [Seu Nome]. Todos os direitos reservados.</p></div>
-    </footer>
-
-    <!-- Modal para Estudos de Caso -->
-    <div id="project-modal" class="modal">
-        <div id="modal-content-container" class="modal-content glass-card rounded-lg">
-            <!-- Conteúdo do projeto será injetado aqui pelo JavaScript -->
+    <footer class="border-t border-[var(--border-color)] mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-[var(--subtle-text-color)]">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.linkedin.com/in/brener-pomp%C3%AAo/" target="_blank" rel="noopener noreferrer" class="social-link"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                <a href="mailto:b.pompeo.rodrigues@gmail.com" class="social-link"><i data-lucide="mail" class="w-6 h-6"></i></a>
+            </div>
+            <p class="text-sm">&copy; <span id="current-year"></span> Brenër Pompêo. Todos os direitos reservados.</p>
         </div>
-    </div>
+    </footer>
 
     <script>
         // --- CONFIGURAÇÃO E ESTILOS DINÂMICOS ---
         tailwind.config = {
-            theme: { extend: { colors: { primary: 'var(--primary-color)' } } }
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: 'var(--primary-color)', accent: 'var(--accent-color)' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
         }
         
-        // Aplica estilos base reutilizáveis com JavaScript para manter o HTML limpo
         const applyBaseStyles = () => {
-            document.querySelectorAll('.nav-link').forEach(el => el.classList.add('hover:text-[var(--primary-color)]', 'transition-colors'));
-            document.querySelectorAll('.menu-link').forEach(el => el.classList.add('text-2xl', 'font-bold', 'tracking-widest', 'hover:text-[var(--primary-color)]', 'transition-colors'));
-            document.querySelectorAll('.cta-button').forEach(el => el.classList.add('bg-[var(--primary-color)]', 'text-black', 'font-bold', 'py-3', 'px-8', 'rounded-lg', 'transition-all', 'transform', 'hover:scale-105', 'hover:shadow-[0_0_20px_var(--primary-color)]'));
-            document.querySelectorAll('.section-title').forEach(el => el.classList.add('text-3xl', 'md:text-4xl', 'font-bold', 'tracking-tighter'));
-            document.querySelectorAll('.section-subtitle').forEach(el => el.classList.add('text-lg', 'text-gray-500', 'mt-2'));
-            document.querySelectorAll('.social-link').forEach(el => el.classList.add('text-gray-400', 'hover:text-[var(--primary-color)]', 'transition-colors'));
-            document.querySelectorAll('.skill-pill').forEach(el => el.classList.add('bg-white/5', 'text-cyan-300', 'text-sm', 'font-medium', 'py-1.5', 'px-4', 'rounded-full', 'border', 'border-white/10', 'hover:bg-white/10', 'transition-colors'));
-            document.querySelectorAll('.project-card').forEach(el => el.classList.add('group', 'block', 'rounded-lg', 'glass-card', 'overflow-hidden', 'cursor-pointer'));
-            document.querySelectorAll('.project-image').forEach(el => el.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-500', 'group-hover:scale-105'));
-            document.querySelectorAll('.form-input').forEach(el => el.classList.add('w-full', 'p-3', 'bg-white/5', 'border', 'border-white/10', 'rounded-lg', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[var(--primary-color)]', 'transition-all'));
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.add('hover:text-[var(--accent-color)]', 'transition-colors'));
+            document.querySelectorAll('.menu-link').forEach(el => el.classList.add('text-2xl', 'font-bold', 'tracking-widest', 'hover:text-[var(--accent-color)]', 'transition-colors'));
+            document.querySelectorAll('.cta-button').forEach(el => el.classList.add('bg-white', 'light:bg-black', 'text-black', 'light:text-white', 'font-bold', 'py-4', 'px-8', 'rounded-full', 'transition-all', 'transform', 'hover:scale-105', 'hover:bg-[var(--accent-color)]', 'hover:text-white', 'tracking-wide', 'inline-block'));
+            document.querySelectorAll('.social-link').forEach(el => el.classList.add('text-gray-400', 'hover:text-white', 'light:hover:text-black', 'transition-colors'));
+            document.querySelectorAll('.section-title').forEach(el => el.classList.add('text-3xl', 'md:text-4xl', 'font-bold'));
+            document.querySelectorAll('.form-input').forEach(el => el.classList.add('w-full', 'p-3', 'bg-black/5', 'light:bg-gray-100', 'border', 'border-[var(--border-color)]', 'rounded-lg', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[var(--accent-color)]', 'transition-all', 'placeholder-gray-500', 'light:placeholder-gray-400'));
         };
 
-        // --- CURSOR PERSONALIZADO ---
-        const cursor = document.querySelector('.custom-cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.setAttribute('style', `top: ${e.pageY}px; left: ${e.pageX}px;`);
-        });
-        document.querySelectorAll('a, button, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-        });
+        // --- LÓGICA DO TEMA (LIGHT/DARK MODE) ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+        const darkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+        const lightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
 
+        const applyTheme = (isLight) => {
+            if (isLight) {
+                document.documentElement.classList.add('light-mode');
+            } else {
+                document.documentElement.classList.remove('light-mode');
+            }
+            darkIcon.classList.toggle('hidden', isLight);
+            lightIcon.classList.toggle('hidden', !isLight);
+            darkIconMobile.classList.toggle('hidden', isLight);
+            lightIconMobile.classList.toggle('hidden', !isLight);
+        };
+
+        const toggleTheme = () => {
+            const isLight = !document.documentElement.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            applyTheme(isLight);
+        };
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+        
         // --- MENU MOBILE ---
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -297,99 +372,165 @@
             lucide.createIcons();
         };
         menuBtn.addEventListener('click', toggleMenu);
-        document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => !mobileMenu.classList.contains('hidden') && toggleMenu()));
+        document.querySelectorAll('.menu-link, .nav-link').forEach(link => link.addEventListener('click', () => !mobileMenu.classList.contains('hidden') && toggleMenu()));
 
         // --- ANIMAÇÃO DE SCROLL (REVEAL) ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // --- LÓGICA DO MODAL DE PROJETOS ---
-        const projectModal = document.getElementById('project-modal');
-        const modalContentContainer = document.getElementById('modal-content-container');
-        
-        // Dados dos projetos (simulando um banco de dados)
-        const projectData = {
-            '1': {
-                title: 'Nome do Projeto 1',
-                category: 'Branding / UI/UX',
-                image: 'https://placehold.co/800x450/0D0D0D/FFFFFF?text=Solu%C3%A7%C3%A3o+Final',
-                challenge: 'O cliente precisava de um rebranding completo para se conectar com um público mais jovem e tecnológico, sem perder a essência da marca.',
-                role: 'Fui responsável por toda a estratégia de branding, design de identidade visual e o desenvolvimento do UI/UX para o novo website.',
-                process: 'Iniciamos com workshops de imersão, definimos os arquétipos da marca e desenvolvemos um design system robusto. O processo incluiu wireframes, protótipos interativos e testes de usabilidade.',
-                solution: 'Criamos uma identidade visual vibrante e um site com navegação intuitiva, focado na experiência mobile e com microinterações que encantam o usuário.',
-                impact: 'Aumento de 40% no engajamento de usuários e 15% na taxa de conversão nos primeiros 3 meses após o lançamento.'
-            },
-            '2': {
-                title: 'Nome do Projeto 2',
-                category: 'Web Design / Desenvolvimento',
-                image: 'https://placehold.co/800x450/0D0D0D/FFFFFF?text=Solu%C3%A7%C3%A3o+Final',
-                challenge: 'Desenvolver uma plataforma de e-commerce de alta performance, capaz de suportar um grande volume de acessos e com uma experiência de compra fluida.',
-                role: 'Atuei como designer e desenvolvedor front-end, criando a interface do zero e implementando-a com React e Next.js.',
-                process: 'A arquitetura foi pensada para ser escalável e rápida. Utilizamos a metodologia Jamstack para garantir a melhor performance e segurança.',
-                solution: 'Uma loja virtual ultrarrápida, com design limpo e um checkout otimizado, resultando em uma experiência de compra sem atritos.',
-                impact: 'Redução de 50% no tempo de carregamento da página e um aumento de 25% nas vendas.'
+        // --- GEMINI API - LOGIC ---
+        const apiKey = ""; // API key will be provided by the environment
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        // Ferramenta 1: Diagnóstico de Carreira
+        const careerAnalyzeBtn = document.getElementById('career-analyze-btn');
+        const careerResultsContainer = document.getElementById('career-results-container');
+        const careerLoader = document.getElementById('career-loader');
+        const careerAnalysisResults = document.getElementById('career-analysis-results');
+
+        careerAnalyzeBtn.addEventListener('click', async () => {
+            const currentRole = document.getElementById('current-role').value;
+            const desiredRole = document.getElementById('desired-role').value;
+            const skills = document.getElementById('skills-input').value;
+
+            if (!currentRole.trim() || !desiredRole.trim() || !skills.trim()) {
+                alert('Por favor, preencha todos os campos da análise de carreira.');
+                return;
             }
-        };
 
-        const createModalContent = (data) => {
-            return `
-                <i data-lucide="x" class="close-modal w-8 h-8 text-gray-500 hover:text-white transition-colors"></i>
-                <h2 class="text-3xl font-bold mb-2">${data.title}</h2>
-                <p class="text-sm text-gray-400 mb-6">${data.category}</p>
-                <img src="${data.image}" alt="${data.title}" class="w-full rounded-lg mb-8">
-                <div class="space-y-6 text-gray-300">
-                    <div><h3 class="font-bold text-lg text-white mb-1">O Desafio</h3><p>${data.challenge}</p></div>
-                    <div><h3 class="font-bold text-lg text-white mb-1">Meu Papel</h3><p>${data.role}</p></div>
-                    <div><h3 class="font-bold text-lg text-white mb-1">O Processo</h3><p>${data.process}</p></div>
-                    <div><h3 class="font-bold text-lg text-white mb-1">A Solução e o Impacto</h3><p class="text-[var(--primary-color)] font-medium">${data.impact}</p></div>
-                </div>
-            `;
-        };
-        
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const projectId = card.dataset.project;
-                const data = projectData[projectId];
-                modalContentContainer.innerHTML = createModalContent(data);
-                projectModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                lucide.createIcons(); // Recria o ícone 'x'
-                projectModal.querySelector('.close-modal').addEventListener('click', () => {
-                    projectModal.style.display = 'none';
-                    document.body.style.overflow = '';
-                });
-            });
-        });
+            careerResultsContainer.classList.remove('hidden');
+            careerLoader.classList.remove('hidden');
+            careerAnalysisResults.classList.add('hidden');
+            careerAnalysisResults.innerHTML = '';
 
-        window.addEventListener('click', (event) => {
-            if (event.target == projectModal) {
-                projectModal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        });
-
-        // --- FORMULÁRIO DE CONTATO ---
-        const form = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            formStatus.textContent = 'Enviando...';
-            formStatus.style.color = 'var(--text-color)';
+            const prompt = `Como um consultor de carreira estratégico, analise o seguinte perfil: Cargo Atual: "${currentRole}", Cargo Desejado: "${desiredRole}", Habilidades Principais: "${skills}". Forneça uma análise no seguinte formato JSON:`;
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            "gap_analysis": { type: "ARRAY", items: { type: "STRING" } },
+                            "plano_de_acao": { type: "ARRAY", items: { type: "STRING" } },
+                            "disclaimer": { type: "STRING" }
+                        }
+                    }
+                }
+            };
             
-            // Simulação de envio de formulário
-            setTimeout(() => {
-                formStatus.textContent = 'Mensagem enviada com sucesso!';
-                formStatus.style.color = 'var(--primary-color)';
-                form.reset();
-            }, 1500);
+            try {
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error(`API error: ${response.statusText}`);
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const jsonText = result.candidates[0].content.parts[0].text;
+                    const parsedJson = JSON.parse(jsonText);
+                    renderCareerResults(parsedJson);
+                } else { throw new Error("Resposta inválida da API."); }
+            } catch (error) {
+                console.error("Error calling Gemini API for career analysis:", error);
+                careerAnalysisResults.innerHTML = `<p class="text-red-500 text-center">Ocorreu um erro ao analisar sua carreira. Por favor, tente novamente.</p>`;
+            } finally {
+                careerLoader.classList.add('hidden');
+                careerAnalysisResults.classList.remove('hidden');
+            }
         });
+
+        function renderCareerResults(data) {
+            const { gap_analysis, plano_de_acao, disclaimer } = data;
+            const gapHtml = `<div class="clean-card p-6 mb-6"><h4 class="font-bold text-lg text-[var(--text-color)] mb-2 flex items-center gap-2"><i data-lucide="search" class="w-5 h-5 text-[var(--accent-color)]"></i>Análise de Gaps</h4><p class="text-sm mb-2 text-[var(--subtle-text-color)]">Competências a serem desenvolvidas para alcançar seu objetivo:</p><ul class="list-disc list-inside text-sm space-y-1 text-[var(--subtle-text-color)]">${gap_analysis.map(item => `<li>${item}</li>`).join('')}</ul></div>`;
+            const planHtml = `<div class="clean-card p-6"><h4 class="font-bold text-lg text-[var(--text-color)] mb-2 flex items-center gap-2"><i data-lucide="list-checks" class="w-5 h-5 text-[var(--accent-color)]"></i>Plano de Ação Sugerido</h4><ul class="list-decimal list-inside text-sm space-y-2 text-[var(--subtle-text-color)]">${plano_de_acao.map(item => `<li>${item}</li>`).join('')}</ul></div>`;
+            const disclaimerHtml = `<p class="text-xs text-center text-gray-500 mt-8">${disclaimer}</p>`;
+            careerAnalysisResults.innerHTML = gapHtml + planHtml + disclaimerHtml;
+            lucide.createIcons();
+        }
+
+        // Ferramenta 2: Gerador de Pitch Estratégico
+        const pitchAnalyzeBtn = document.getElementById('pitch-analyze-btn');
+        const pitchResultsContainer = document.getElementById('pitch-results-container');
+        const pitchLoader = document.getElementById('pitch-loader');
+        const pitchAnalysisResults = document.getElementById('pitch-analysis-results');
+
+        pitchAnalyzeBtn.addEventListener('click', async () => {
+            const pitchIdea = document.getElementById('pitch-idea-input').value;
+            const pitchAudience = document.getElementById('pitch-audience-input').value;
+
+            if (!pitchIdea.trim() || !pitchAudience.trim()) {
+                alert('Por favor, preencha todos os campos para gerar o pitch.');
+                return;
+            }
+
+            pitchResultsContainer.classList.remove('hidden');
+            pitchLoader.classList.remove('hidden');
+            pitchAnalysisResults.classList.add('hidden');
+            pitchAnalysisResults.innerHTML = '';
+
+            const prompt = `Como um consultor de comunicação estratégica, crie um pitch conciso e poderoso para a seguinte ideia: "${pitchIdea}", direcionado para o público: "${pitchAudience}". Estruture a resposta no seguinte formato JSON:`;
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            "hook": { type: "STRING", description: "Uma frase de abertura impactante para capturar a atenção." },
+                            "problem": { type: "STRING", description: "A descrição clara do problema que está sendo resolvido." },
+                            "solution": { type: "STRING", description: "A apresentação da sua solução ou projeto." },
+                            "call_to_action": { type: "STRING", description: "Uma chamada para ação clara e convincente." },
+                            "disclaimer": { type: "STRING" }
+                        }
+                    }
+                }
+            };
+            
+            try {
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error(`API error: ${response.statusText}`);
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const jsonText = result.candidates[0].content.parts[0].text;
+                    const parsedJson = JSON.parse(jsonText);
+                    renderPitchResults(parsedJson);
+                } else { throw new Error("Resposta inválida da API."); }
+            } catch (error) {
+                console.error("Error calling Gemini API for pitch generation:", error);
+                pitchAnalysisResults.innerHTML = `<p class="text-red-500 text-center">Ocorreu um erro ao gerar seu pitch. Por favor, tente novamente.</p>`;
+            } finally {
+                pitchLoader.classList.add('hidden');
+                pitchAnalysisResults.classList.remove('hidden');
+            }
+        });
+
+        function renderPitchResults(data) {
+            const { hook, problem, solution, call_to_action, disclaimer } = data;
+            const html = `
+                <div class="clean-card p-6 space-y-4">
+                    <div><h4 class="font-bold text-lg text-[var(--text-color)] mb-2 flex items-center gap-2"><i data-lucide="zap" class="w-5 h-5 text-[var(--accent-color)]"></i>Gancho (Hook)</h4><p class="italic text-[var(--subtle-text-color)]">"${hook}"</p></div>
+                    <div><h4 class="font-bold text-lg text-[var(--text-color)] mb-2 flex items-center gap-2"><i data-lucide="target" class="w-5 h-5 text-[var(--accent-color)]"></i>Problema</h4><p class="text-sm text-[var(--subtle-text-color)]">${problem}</p></div>
+                    <div><h4 class="font-bold text-lg text-[var(--text-color)] mb-2 flex items-center gap-2"><i data-lucide="rocket" class="w-5 h-5 text-[var(--accent-color)]"></i>Solução</h4><p class="text-sm text-[var(--subtle-text-color)]">${solution}</p></div>
+                    <div><h4 class="font-bold text-lg text-[var(--text-color)] mb-2 flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-5 h-5 text-[var(--accent-color)]"></i>Chamada para Ação</h4><p class="text-sm text-[var(--subtle-text-color)]">${call_to_action}</p></div>
+                </div>
+                <p class="text-xs text-center text-gray-500 mt-8">${disclaimer}</p>
+            `;
+            pitchAnalysisResults.innerHTML = html;
+            lucide.createIcons();
+        }
+
 
         // --- INICIALIZAÇÃO ---
         document.addEventListener('DOMContentLoaded', () => {
+            const isLight = localStorage.getItem('theme') === 'light';
+            applyTheme(isLight);
             applyBaseStyles();
             lucide.createIcons();
             document.getElementById('current-year').textContent = new Date().getFullYear();
