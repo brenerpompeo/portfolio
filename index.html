@@ -23,6 +23,18 @@
             --text-color: #E0E0E0;
             --primary-color: #00E5FF; /* Ciano Neon */
             --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --header-bg: rgba(0, 0, 0, 0.3);
+        }
+        html.light {
+            --bg-color: #F5F5F5;
+            --text-color: #1A1A1A;
+            --primary-color: #007BFF; /* Azul Clássico */
+            --border-color: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.5);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(255, 255, 255, 0.5);
         }
 
         html { scroll-behavior: smooth; }
@@ -56,13 +68,26 @@
         .text-glow {
             text-shadow: 0 0 8px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3);
         }
+        html.light .text-glow {
+            text-shadow: none;
+        }
+
+        html.light .skill-pill {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        html.light .filter-btn:not(.active) {
+            background-color: #e0e0e0;
+            color: #333;
+        }
 
         /* Estilo para cards com efeito "glassmorphism" */
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--card-border);
             transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .glass-card:hover {
@@ -119,22 +144,34 @@
     <div class="custom-cursor"></div>
 
     <!-- Cabeçalho -->
-    <header class="bg-black/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10">
+    <header id="main-header" class="bg-header-bg backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#inicio" class="text-xl font-bold tracking-wider hover:text-[var(--primary-color)] transition-colors">SEU NOME</a>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest">
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest items-center">
                 <a href="#sobre" class="nav-link">SOBRE</a>
                 <a href="#skills" class="nav-link">SKILLS</a>
                 <a href="#portfolio" class="nav-link">PROJETOS</a>
+                <a href="#blog" class="nav-link">BLOG</a>
                 <a href="#depoimentos" class="nav-link">DEPOIMENTOS</a>
                 <a href="#contato" class="nav-link">CONTATO</a>
+                <button id="theme-toggle" class="ml-4 text-gray-400 hover:text-white">
+                    <i data-lucide="sun" class="w-6 h-6 block dark-icon"></i>
+                    <i data-lucide="moon" class="w-6 h-6 hidden light-icon"></i>
+                </button>
             </nav>
-            <button id="menu-btn" class="md:hidden z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
+            <div class="md:hidden flex items-center">
+                <button id="theme-toggle-mobile" class="mr-4 text-gray-400 hover:text-white">
+                    <i data-lucide="sun" class="w-6 h-6 block dark-icon"></i>
+                    <i data-lucide="moon" class="w-6 h-6 hidden light-icon"></i>
+                </button>
+                <button id="menu-btn" class="z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
+            </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/90 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
             <a href="#sobre" class="menu-link">SOBRE</a>
             <a href="#skills" class="menu-link">SKILLS</a>
             <a href="#portfolio" class="menu-link">PROJETOS</a>
+            <a href="#blog" class="menu-link">BLOG</a>
             <a href="#depoimentos" class="menu-link">DEPOIMENTOS</a>
             <a href="#contato" class="menu-link">CONTATO</a>
         </div>
@@ -197,14 +234,66 @@
                 <h2 class="section-title">Projetos Recentes</h2>
                 <p class="section-subtitle">Uma seleção dos meus trabalhos favoritos.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="project-card" data-project="1">
+            <div class="flex justify-center flex-wrap gap-2 mb-10">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="ui-ux">UI/UX</button>
+                <button class="filter-btn" data-filter="web-design">Web Design</button>
+                <button class="filter-btn" data-filter="development">Desenvolvimento</button>
+            </div>
+            <div id="project-grid" class="grid md:grid-cols-2 gap-8">
+                <div class="project-card" data-project="1" data-tags="branding ui-ux">
                     <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+1" alt="Descrição do Projeto 1" class="project-image">
                     <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 1</h3><p class="text-gray-400 text-sm">Branding / UI/UX</p></div>
                 </div>
-                <div class="project-card" data-project="2">
+                <div class="project-card" data-project="2" data-tags="web-design development">
                     <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+2" alt="Descrição do Projeto 2" class="project-image">
                     <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 2</h3><p class="text-gray-400 text-sm">Web Design / Desenvolvimento</p></div>
+                </div>
+                <div class="project-card" data-project="3" data-tags="branding">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+3" alt="Descrição do Projeto 3" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 3</h3><p class="text-gray-400 text-sm">Branding</p></div>
+                </div>
+                <div class="project-card" data-project="4" data-tags="ui-ux development">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+4" alt="Descrição do Projeto 4" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 4</h3><p class="text-gray-400 text-sm">UI/UX / Desenvolvimento</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Blog -->
+        <section id="blog" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Blog</h2>
+                <p class="section-subtitle">Artigos e insights sobre tecnologia, design e carreira.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Post 1 -->
+                <div class="blog-post-card">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Post+1" alt="Imagem do Post 1" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2">15 de Julho, 2024</p>
+                        <h3 class="text-xl font-bold mb-2">Como o Design Thinking pode impulsionar sua carreira</h3>
+                        <a href="#" class="text-[var(--primary-color)] font-semibold hover:underline">Leia mais &rarr;</a>
+                    </div>
+                </div>
+                <!-- Post 2 -->
+                <div class="blog-post-card">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Post+2" alt="Imagem do Post 2" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2">02 de Julho, 2024</p>
+                        <h3 class="text-xl font-bold mb-2">5 tendências de UI/UX para ficar de olho em 2025</h3>
+                        <a href="#" class="text-[var(--primary-color)] font-semibold hover:underline">Leia mais &rarr;</a>
+                    </div>
+                </div>
+                <!-- Post 3 -->
+                <div class="blog-post-card">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Post+3" alt="Imagem do Post 3" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2">20 de Junho, 2024</p>
+                        <h3 class="text-xl font-bold mb-2">A importância de um portfólio para desenvolvedores</h3>
+                        <a href="#" class="text-[var(--primary-color)] font-semibold hover:underline">Leia mais &rarr;</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -272,9 +361,13 @@
             document.querySelectorAll('.section-subtitle').forEach(el => el.classList.add('text-lg', 'text-gray-500', 'mt-2'));
             document.querySelectorAll('.social-link').forEach(el => el.classList.add('text-gray-400', 'hover:text-[var(--primary-color)]', 'transition-colors'));
             document.querySelectorAll('.skill-pill').forEach(el => el.classList.add('bg-white/5', 'text-cyan-300', 'text-sm', 'font-medium', 'py-1.5', 'px-4', 'rounded-full', 'border', 'border-white/10', 'hover:bg-white/10', 'transition-colors'));
+            document.querySelectorAll('.filter-btn').forEach(el => el.classList.add('px-4', 'py-2', 'rounded-full', 'text-sm', 'font-medium', 'transition-colors', 'border', 'border-transparent'));
+            document.querySelectorAll('.filter-btn.active').forEach(el => el.classList.add('bg-[var(--primary-color)]', 'text-black', 'border-[var(--primary-color)]'));
+            document.querySelectorAll('.filter-btn:not(.active)').forEach(el => el.classList.add('bg-white/5', 'text-gray-300', 'hover:border-[var(--primary-color)]', 'hover:text-[var(--primary-color)]'));
             document.querySelectorAll('.project-card').forEach(el => el.classList.add('group', 'block', 'rounded-lg', 'glass-card', 'overflow-hidden', 'cursor-pointer'));
             document.querySelectorAll('.project-image').forEach(el => el.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-500', 'group-hover:scale-105'));
             document.querySelectorAll('.form-input').forEach(el => el.classList.add('w-full', 'p-3', 'bg-white/5', 'border', 'border-white/10', 'rounded-lg', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[var(--primary-color)]', 'transition-all'));
+            document.querySelectorAll('.blog-post-card').forEach(el => el.classList.add('glass-card', 'rounded-lg', 'overflow-hidden', 'transition-all', 'hover:transform', 'hover:-translate-y-2'));
         };
 
         // --- CURSOR PERSONALIZADO ---
@@ -388,11 +481,71 @@
             }, 1500);
         });
 
+        // --- LÓGICA DO TEMA (MODO CLARO/ESCURO) ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const header = document.getElementById('main-header');
+
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                document.documentElement.classList.add('light');
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.add('hidden'));
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.remove('hidden'));
+                header.style.backgroundColor = 'var(--header-bg)';
+            } else {
+                document.documentElement.classList.remove('light');
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.remove('hidden'));
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.add('hidden'));
+                header.style.backgroundColor = 'var(--header-bg)';
+            }
+            lucide.createIcons();
+        };
+
+        const toggleTheme = () => {
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        };
+
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // --- FILTRO DE PROJETOS ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectGrid = document.getElementById('project-grid');
+        const projectCards = projectGrid.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+
+                // Botão Ativo
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                applyBaseStyles(); // Re-aplica estilos para o botão ativo
+
+                // Lógica de Filtragem
+                projectCards.forEach(card => {
+                    const tags = card.dataset.tags;
+                    if (filter === 'all' || tags.includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
         // --- INICIALIZAÇÃO ---
         document.addEventListener('DOMContentLoaded', () => {
             applyBaseStyles();
             lucide.createIcons();
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            document.getElementById('current-year').textContent = new
+new Date().getFullYear();
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
         });
     </script>
 </body>
