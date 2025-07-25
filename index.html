@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Nome | Portfólio Criativo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Estilo base e variáveis de cor para um tema futurista */
+        :root {
+            --bg-color: #0D0D0D;
+            --text-color: #E0E0E0;
+            --primary-color: #00E5FF; /* Ciano Neon */
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 2rem 2rem;
+        }
+
+        /* Cursor Personalizado */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            z-index: 9999;
+        }
+        .custom-cursor.hovered {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 229, 255, 0.2);
+        }
+
+        /* Efeito de brilho para o gradiente de texto */
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3);
+        }
+
+        /* Estilo para cards com efeito "glassmorphism" */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+        }
+        
+        /* Animação de fade-in ao rolar a página */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos para o Modal de Projeto */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 900px;
+            animation: slide-in 0.5s ease-out;
+        }
+        @keyframes slide-in {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="custom-cursor"></div>
+
+    <!-- Cabeçalho -->
+    <header class="bg-black/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#inicio" class="text-xl font-bold tracking-wider hover:text-[var(--primary-color)] transition-colors">SEU NOME</a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest">
+                <a href="#sobre" class="nav-link">SOBRE</a>
+                <a href="#skills" class="nav-link">SKILLS</a>
+                <a href="#portfolio" class="nav-link">PROJETOS</a>
+                <a href="#depoimentos" class="nav-link">DEPOIMENTOS</a>
+                <a href="#contato" class="nav-link">CONTATO</a>
+            </nav>
+            <button id="menu-btn" class="md:hidden z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/90 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
+            <a href="#sobre" class="menu-link">SOBRE</a>
+            <a href="#skills" class="menu-link">SKILLS</a>
+            <a href="#portfolio" class="menu-link">PROJETOS</a>
+            <a href="#depoimentos" class="menu-link">DEPOIMENTOS</a>
+            <a href="#contato" class="menu-link">CONTATO</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Seção Início (Hero) -->
+        <section id="inicio" class="min-h-screen flex items-center pt-20">
+            <div class="w-full text-center md:text-left reveal">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none">
+                    Design que Inspira
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary-color)] to-purple-500 text-glow">
+                        o Futuro.
+                    </span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 text-gray-400">
+                    Olá! Sou [Seu Nome], um [Sua Profissão] que cria soluções digitais sofisticadas e de alta performance.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#portfolio" class="cta-button">Explorar Projetos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" class="py-20 md:py-32 reveal">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-2">
+                    <div class="p-1 border border-white/10 rounded-lg glass-card">
+                        <img src="https://placehold.co/600x600/0D0D0D/00E5FF?text=Sua+Foto" alt="Retrato de [Seu Nome]" class="rounded-md w-full">
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <h2 class="section-title">Sobre Mim</h2>
+                    <p class="text-gray-400 mb-4 leading-relaxed">Com mais de [X] anos de experiência, meu foco é criar soluções que não apenas pareçam boas, mas que também funcionem de forma intuitiva e alcancem os objetivos propostos. Minha jornada no mundo do design começou com [conte uma breve história ou motivação].</p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="social-link"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="behance" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Skills -->
+        <section id="skills" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Habilidades</h2>
+                <p class="section-subtitle">Tecnologias e ferramentas que utilizo no meu dia a dia.</p>
+            </div>
+            <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-3 md:gap-4">
+                <span class="skill-pill">UI/UX Design</span><span class="skill-pill">Branding</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Figma</span><span class="skill-pill">Adobe XD</span><span class="skill-pill">Webflow</span><span class="skill-pill">HTML5</span><span class="skill-pill">CSS3 & Tailwind</span><span class="skill-pill">JavaScript</span><span class="skill-pill">React</span>
+            </div>
+        </section>
+
+        <!-- Seção Portfólio / Projetos -->
+        <section id="portfolio" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Projetos Recentes</h2>
+                <p class="section-subtitle">Uma seleção dos meus trabalhos favoritos.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="project-card" data-project="1">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+1" alt="Descrição do Projeto 1" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 1</h3><p class="text-gray-400 text-sm">Branding / UI/UX</p></div>
+                </div>
+                <div class="project-card" data-project="2">
+                    <img src="https://placehold.co/800x600/0D0D0D/FFFFFF?text=Projeto+2" alt="Descrição do Projeto 2" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Nome do Projeto 2</h3><p class="text-gray-400 text-sm">Web Design / Desenvolvimento</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Depoimentos -->
+        <section id="depoimentos" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">O que dizem sobre mim</h2>
+                <p class="section-subtitle">Feedback de clientes e colaboradores.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-card p-8 rounded-lg">
+                    <p class="text-gray-300 italic">"[Seu Nome] tem uma capacidade incrível de traduzir ideias complexas em designs elegantes e funcionais. O processo foi transparente e o resultado superou todas as expectativas."</p>
+                    <div class="mt-4 text-right"><p class="font-bold">Nome do Cliente</p><p class="text-sm text-gray-500">CEO, Empresa Exemplo</p></div>
+                </div>
+                <div class="glass-card p-8 rounded-lg">
+                    <p class="text-gray-300 italic">"Trabalhar com [Seu Nome] foi um divisor de águas para o nosso produto. A atenção aos detalhes de UX fez nossa taxa de conversão aumentar significativamente."</p>
+                    <div class="mt-4 text-right"><p class="font-bold">Outro Cliente</p><p class="text-sm text-gray-500">Diretor de Produto, Startup Tech</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contato" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Vamos Criar Algo Incrível?</h2>
+                <p class="section-subtitle">Estou disponível para novos projetos e colaborações.</p>
+            </div>
+            <div class="max-w-xl mx-auto glass-card p-8 rounded-lg">
+                <form id="contact-form">
+                    <div class="mb-4"><label for="name" class="sr-only">Nome</label><input type="text" id="name" name="name" placeholder="Seu Nome" class="form-input" required></div>
+                    <div class="mb-4"><label for="email" class="sr-only">Email</label><input type="email" id="email" name="email" placeholder="Seu Email" class="form-input" required></div>
+                    <div class="mb-4"><label for="message" class="sr-only">Mensagem</label><textarea id="message" name="message" rows="4" placeholder="Sua Mensagem" class="form-input" required></textarea></div>
+                    <button type="submit" class="cta-button w-full">Enviar Mensagem</button>
+                </form>
+                <p id="form-status" class="mt-4 text-center"></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="border-t border-white/10 mt-20">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-600 text-sm"><p>&copy; <span id="current-year"></span> [Seu Nome]. Todos os direitos reservados.</p></div>
+    </footer>
+
+    <!-- Modal para Estudos de Caso -->
+    <div id="project-modal" class="modal">
+        <div id="modal-content-container" class="modal-content glass-card rounded-lg">
+            <!-- Conteúdo do projeto será injetado aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURAÇÃO E ESTILOS DINÂMICOS ---
+        tailwind.config = {
+            theme: { extend: { colors: { primary: 'var(--primary-color)' } } }
+        }
+        
+        // Aplica estilos base reutilizáveis com JavaScript para manter o HTML limpo
+        const applyBaseStyles = () => {
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.add('hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.menu-link').forEach(el => el.classList.add('text-2xl', 'font-bold', 'tracking-widest', 'hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.cta-button').forEach(el => el.classList.add('bg-[var(--primary-color)]', 'text-black', 'font-bold', 'py-3', 'px-8', 'rounded-lg', 'transition-all', 'transform', 'hover:scale-105', 'hover:shadow-[0_0_20px_var(--primary-color)]'));
+            document.querySelectorAll('.section-title').forEach(el => el.classList.add('text-3xl', 'md:text-4xl', 'font-bold', 'tracking-tighter'));
+            document.querySelectorAll('.section-subtitle').forEach(el => el.classList.add('text-lg', 'text-gray-500', 'mt-2'));
+            document.querySelectorAll('.social-link').forEach(el => el.classList.add('text-gray-400', 'hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.skill-pill').forEach(el => el.classList.add('bg-white/5', 'text-cyan-300', 'text-sm', 'font-medium', 'py-1.5', 'px-4', 'rounded-full', 'border', 'border-white/10', 'hover:bg-white/10', 'transition-colors'));
+            document.querySelectorAll('.project-card').forEach(el => el.classList.add('group', 'block', 'rounded-lg', 'glass-card', 'overflow-hidden', 'cursor-pointer'));
+            document.querySelectorAll('.project-image').forEach(el => el.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-500', 'group-hover:scale-105'));
+            document.querySelectorAll('.form-input').forEach(el => el.classList.add('w-full', 'p-3', 'bg-white/5', 'border', 'border-white/10', 'rounded-lg', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[var(--primary-color)]', 'transition-all'));
+        };
+
+        // --- CURSOR PERSONALIZADO ---
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.setAttribute('style', `top: ${e.pageY}px; left: ${e.pageX}px;`);
+        });
+        document.querySelectorAll('a, button, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // --- MENU MOBILE ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleMenu = () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = isHidden ? '' : 'hidden';
+            menuBtn.querySelector('i').setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+            lucide.createIcons();
+        };
+        menuBtn.addEventListener('click', toggleMenu);
+        document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => !mobileMenu.classList.contains('hidden') && toggleMenu()));
+
+        // --- ANIMAÇÃO DE SCROLL (REVEAL) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- LÓGICA DO MODAL DE PROJETOS ---
+        const projectModal = document.getElementById('project-modal');
+        const modalContentContainer = document.getElementById('modal-content-container');
+        
+        // Dados dos projetos (simulando um banco de dados)
+        const projectData = {
+            '1': {
+                title: 'Nome do Projeto 1',
+                category: 'Branding / UI/UX',
+                image: 'https://placehold.co/800x450/0D0D0D/FFFFFF?text=Solu%C3%A7%C3%A3o+Final',
+                challenge: 'O cliente precisava de um rebranding completo para se conectar com um público mais jovem e tecnológico, sem perder a essência da marca.',
+                role: 'Fui responsável por toda a estratégia de branding, design de identidade visual e o desenvolvimento do UI/UX para o novo website.',
+                process: 'Iniciamos com workshops de imersão, definimos os arquétipos da marca e desenvolvemos um design system robusto. O processo incluiu wireframes, protótipos interativos e testes de usabilidade.',
+                solution: 'Criamos uma identidade visual vibrante e um site com navegação intuitiva, focado na experiência mobile e com microinterações que encantam o usuário.',
+                impact: 'Aumento de 40% no engajamento de usuários e 15% na taxa de conversão nos primeiros 3 meses após o lançamento.'
+            },
+            '2': {
+                title: 'Nome do Projeto 2',
+                category: 'Web Design / Desenvolvimento',
+                image: 'https://placehold.co/800x450/0D0D0D/FFFFFF?text=Solu%C3%A7%C3%A3o+Final',
+                challenge: 'Desenvolver uma plataforma de e-commerce de alta performance, capaz de suportar um grande volume de acessos e com uma experiência de compra fluida.',
+                role: 'Atuei como designer e desenvolvedor front-end, criando a interface do zero e implementando-a com React e Next.js.',
+                process: 'A arquitetura foi pensada para ser escalável e rápida. Utilizamos a metodologia Jamstack para garantir a melhor performance e segurança.',
+                solution: 'Uma loja virtual ultrarrápida, com design limpo e um checkout otimizado, resultando em uma experiência de compra sem atritos.',
+                impact: 'Redução de 50% no tempo de carregamento da página e um aumento de 25% nas vendas.'
+            }
+        };
+
+        const createModalContent = (data) => {
+            return `
+                <i data-lucide="x" class="close-modal w-8 h-8 text-gray-500 hover:text-white transition-colors"></i>
+                <h2 class="text-3xl font-bold mb-2">${data.title}</h2>
+                <p class="text-sm text-gray-400 mb-6">${data.category}</p>
+                <img src="${data.image}" alt="${data.title}" class="w-full rounded-lg mb-8">
+                <div class="space-y-6 text-gray-300">
+                    <div><h3 class="font-bold text-lg text-white mb-1">O Desafio</h3><p>${data.challenge}</p></div>
+                    <div><h3 class="font-bold text-lg text-white mb-1">Meu Papel</h3><p>${data.role}</p></div>
+                    <div><h3 class="font-bold text-lg text-white mb-1">O Processo</h3><p>${data.process}</p></div>
+                    <div><h3 class="font-bold text-lg text-white mb-1">A Solução e o Impacto</h3><p class="text-[var(--primary-color)] font-medium">${data.impact}</p></div>
+                </div>
+            `;
+        };
+        
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.project;
+                const data = projectData[projectId];
+                modalContentContainer.innerHTML = createModalContent(data);
+                projectModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                lucide.createIcons(); // Recria o ícone 'x'
+                projectModal.querySelector('.close-modal').addEventListener('click', () => {
+                    projectModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                });
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == projectModal) {
+                projectModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // --- FORMULÁRIO DE CONTATO ---
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formStatus.textContent = 'Enviando...';
+            formStatus.style.color = 'var(--text-color)';
+            
+            // Simulação de envio de formulário
+            setTimeout(() => {
+                formStatus.textContent = 'Mensagem enviada com sucesso!';
+                formStatus.style.color = 'var(--primary-color)';
+                form.reset();
+            }, 1500);
+        });
+
+        // --- INICIALIZAÇÃO ---
+        document.addEventListener('DOMContentLoaded', () => {
+            applyBaseStyles();
+            lucide.createIcons();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
